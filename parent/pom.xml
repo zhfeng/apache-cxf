@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf</artifactId>
-        <version>3.3.0-SNAPSHOT</version>
+        <version>3.3.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cxf-parent</artifactId>
@@ -57,7 +57,7 @@
         <cxf.osgi.import />
         <cxf.osgi.symbolic.name>${project.groupId}.${project.artifactId}</cxf.osgi.symbolic.name>
         <cxf.osgi.dynamic.import />
-        <cxf.osgi.spring.version>[3.1,5)</cxf.osgi.spring.version>
+        <cxf.osgi.spring.version>[3.1,6)</cxf.osgi.spring.version>
         <cxf.osgi.spring.osgi.version>[1.2.0,2)</cxf.osgi.spring.osgi.version>
         <cxf.osgi.slf4j.version>[1.5,2)</cxf.osgi.slf4j.version>
         <cxf.osgi.javax.annotation.version>[1.2,2)</cxf.osgi.javax.annotation.version>
@@ -121,7 +121,7 @@
         <cxf.geronimo.transaction.version>3.1.4</cxf.geronimo.transaction.version>
         <cxf.jasypt.bundle.version>1.9.2_1</cxf.jasypt.bundle.version>
         <cxf.javassist.version>3.21.0-GA</cxf.javassist.version>
-        <cxf.javax.ws.rs.version>2.1.4</cxf.javax.ws.rs.version>
+        <cxf.javax.ws.rs.version>2.1.5</cxf.javax.ws.rs.version>
         <cxf.jaxb.version>2.3.2</cxf.jaxb.version>
         <cxf.jaxb.runtime.version>${cxf.jaxb.version}</cxf.jaxb.runtime.version>
         <cxf.jaxb.xjc.version>${cxf.jaxb.version}</cxf.jaxb.xjc.version>
@@ -563,6 +563,11 @@
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>3.3.3</version> 
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-invoker-plugin</artifactId>
+                    <version>3.2.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
