@@ -142,7 +142,7 @@ public class W3CDOMStreamWriter implements XMLStreamWriter {
     }
 
     public void writeStartElement(String prefix, String local, String namespace) throws XMLStreamException {
-        if (prefix == null || prefix.equals("")) {
+        if (prefix == null || prefix.isEmpty()) {
             writeStartElement(namespace, local);
         } else {
             createAndAddElement(prefix, local, namespace);
@@ -238,7 +238,7 @@ public class W3CDOMStreamWriter implements XMLStreamWriter {
     }
 
     public void writeNamespace(String prefix, String namespace) throws XMLStreamException {
-        if (prefix.length() == 0) {
+        if (prefix.isEmpty()) {
             writeDefaultNamespace(namespace);
         } else {
             Attr attr = document.createAttributeNS(XML_NS, "xmlns:" + prefix);
