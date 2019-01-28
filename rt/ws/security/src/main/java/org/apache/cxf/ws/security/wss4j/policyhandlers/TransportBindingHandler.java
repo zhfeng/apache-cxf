@@ -378,11 +378,11 @@ public class TransportBindingHandler extends AbstractBindingBuilder {
             dkSig.setStoreBytesInAttachment(storeBytesInAttachment);
             dkSig.setExpandXopInclude(isExpandXopInclude());
             dkSig.setWsDocInfo(wsDocInfo);
-            
+
             AlgorithmSuiteType algType = binding.getAlgorithmSuite().getAlgorithmSuiteType();
             dkSig.setDerivedKeyLength(algType.getSignatureDerivedKeyLength() / 8);
 
-            dkSig.setExternalKey(encrKey.getEphemeralKey(), encrKey.getId());
+            dkSig.setExternalKey(encrKey.getSymmetricKey().getEncoded(), encrKey.getId());
 
             dkSig.prepare();
 
@@ -465,7 +465,7 @@ public class TransportBindingHandler extends AbstractBindingBuilder {
         dkSign.setStoreBytesInAttachment(storeBytesInAttachment);
         dkSign.setExpandXopInclude(isExpandXopInclude());
         dkSign.setWsDocInfo(wsDocInfo);
-        
+
         AlgorithmSuite algorithmSuite = tbinding.getAlgorithmSuite();
 
         //Setting the AttachedReference or the UnattachedReference according to the flag
