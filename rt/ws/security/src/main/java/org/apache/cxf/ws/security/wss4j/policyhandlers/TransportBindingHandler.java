@@ -403,6 +403,7 @@ public class TransportBindingHandler extends AbstractBindingBuilder {
             dkSig.appendDKElementToHeader();
             dkSig.computeSignature(referenceList, false, null);
 
+            dkSig.clean();
             return dkSig.getSignatureValue();
         }
         WSSecSignature sig = getSignatureBuilder(token, false, false);
@@ -513,6 +514,7 @@ public class TransportBindingHandler extends AbstractBindingBuilder {
         //Do signature
         dkSign.computeSignature(referenceList, false, null);
 
+        dkSign.clean();
         return dkSign.getSignatureValue();
     }
 

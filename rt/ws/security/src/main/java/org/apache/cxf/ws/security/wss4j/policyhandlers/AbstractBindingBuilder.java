@@ -2086,6 +2086,7 @@ public abstract class AbstractBindingBuilder extends AbstractCommonBindingHandle
         }
 
         addSig(dkSign.getSignatureValue());
+        dkSign.clean();
     }
 
     private void doSymmSignature(AbstractToken policyToken, SecurityToken tok,
