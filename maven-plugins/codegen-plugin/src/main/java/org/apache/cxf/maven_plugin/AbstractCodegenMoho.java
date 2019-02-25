@@ -164,6 +164,9 @@ public abstract class AbstractCodegenMoho extends AbstractMojo {
     @Parameter(property = "cxf.wsdlRoot", defaultValue = "${basedir}/src/main/resources/wsdl")
     protected File wsdlRoot;
 
+    @Parameter(property = "cxf.skipGarbageCollection", defaultValue = "false")
+    protected boolean skipGarbageCollection;
+
     @Component
     protected BuildContext buildContext;
 
@@ -303,7 +306,9 @@ public abstract class AbstractCodegenMoho extends AbstractMojo {
         if (project != null && getGeneratedTestRoot() != null && getGeneratedTestRoot().exists()) {
             buildContext.refresh(getGeneratedTestRoot().getAbsoluteFile());
         }
-        System.gc();
+        if (!skipGarbageCollection) {
+            System.gc();
+        }
     }
 
     private void checkResources() {
@@ -670,7 +675,7 @@ public abstract class AbstractCodegenMoho extends AbstractMojo {
         StreamConsumer err = new StreamConsumer() {
             public void consumeLine(String line) {
                 b.append(line);
-                b.append("\n");
+                b.append('\n');
                 getLog().warn(line);
             }
         };

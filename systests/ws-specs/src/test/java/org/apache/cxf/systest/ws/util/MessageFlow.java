@@ -262,7 +262,7 @@ public class MessageFlow {
             boolean lastMessage;
             Element e = outbound ? getSequence(outboundMessages.get(i))
                 : getSequence(inboundMessages.get(i));
-            lastMessage = null == e ? false : getLastMessage(e);
+            lastMessage = null != e && getLastMessage(e);
             assertEquals("Outbound message " + i
                          + (expectedLastMessages[i] ? " does not contain expected last message element."
                              : " contains last message element."),
@@ -530,7 +530,7 @@ public class MessageFlow {
         try {
             buf.append(System.getProperty("line.separator"));
             for (int i = 0; i < streams.size(); i++) {
-                buf.append("[");
+                buf.append('[');
                 buf.append(i);
                 buf.append("] : ");
                 buf.append(new String(streams.get(i)));

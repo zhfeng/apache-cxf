@@ -418,7 +418,7 @@ public class WadlGeneratorTest {
     }
 
     private void checkGrammarsWithLinks(Element appElement, List<String> links) {
-        assertTrue(!links.isEmpty());
+        assertFalse(links.isEmpty());
         List<Element> grammarEls = DOMUtils.getChildrenWithName(appElement, WadlGenerator.WADL_NS,
                                                                 "grammars");
         assertEquals(1, grammarEls.size());
@@ -1024,7 +1024,7 @@ public class WadlGeneratorTest {
         List<Element> importEls = DOMUtils.getChildrenWithName(schemasEls.get(0),
                                                                Constants.URI_2001_SCHEMA_XSD,
                                                                "import");
-        int schemaElementsIndex = importEls.size() > 0 ? 0 : 1;
+        int schemaElementsIndex = !importEls.isEmpty() ? 0 : 1;
         int schemaTypesIndex = schemaElementsIndex == 0 ? 1 : 0;
         
         checkGenericImplSchemaWithTypes(schemasEls.get(schemaTypesIndex));

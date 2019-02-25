@@ -909,7 +909,7 @@ public class JAXRSSoapBookTest extends AbstractBusClientServerTestBase {
             fail("Method should have thrown an exception");
         } catch (Exception e) {
             assertTrue("Out Interceptor not invoked", testFeature.handleMessageOnOutInterceptorCalled());
-            assertTrue("In Interceptor not invoked", !testFeature.handleMessageOnInInterceptorCalled());
+            assertFalse("In Interceptor not invoked", testFeature.handleMessageOnInInterceptorCalled());
             assertTrue("Wrong exception caught",
                        "fault from bad interceptor".equals(e.getCause().getMessage()));
             assertTrue("Client In Fault In Interceptor was invoked",
@@ -938,7 +938,7 @@ public class JAXRSSoapBookTest extends AbstractBusClientServerTestBase {
                 //In interceptors not called when checked exception thrown from server
                 assertTrue("In Interceptor not invoked", testFeature.handleMessageOnInInterceptorCalled());
             } else {
-                assertTrue("In Interceptor not invoked", !testFeature.handleMessageOnInInterceptorCalled());
+                assertFalse("In Interceptor not invoked", testFeature.handleMessageOnInInterceptorCalled());
             }
             assertTrue("Client In Fault In Interceptor not invoked",
                     testFeature.faultInInterceptorCalled());
@@ -1018,7 +1018,7 @@ public class JAXRSSoapBookTest extends AbstractBusClientServerTestBase {
                 message.setContent(InputStream.class, new ByteArrayInputStream(payload));
             } catch (Exception e) {
                 String error = "Failed to read the stream properly due to " + e.getMessage();
-                assertFalse(error, e != null);
+                assertNotNull(error, e);
             }
         }
 

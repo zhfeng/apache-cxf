@@ -41,6 +41,7 @@ import org.apache.hello_world_soap_http.GreeterImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -99,7 +100,7 @@ public class ManagedBusTest {
         InstrumentationManagerImpl imi = (InstrumentationManagerImpl)im;
         assertEquals("service:jmx:rmi:///jndi/rmi://localhost:9913/jmxrmi",
                      imi.getJMXServiceURL());
-        assertTrue(!imi.isEnabled());
+        assertFalse(imi.isEnabled());
         assertNull(imi.getMBeanServer());
 
         //Test that registering without an MBeanServer is a no-op
@@ -144,7 +145,7 @@ public class ManagedBusTest {
                        o.toString().indexOf("bus.id=" + expect + ",") != -1);
             assertTrue("unexpected " + reject + " in object name: " + o,
                        o.toString().indexOf("bus.id=" + reject + ",") == -1);
-            b.append("\n");
+            b.append('\n');
         }
         assertEquals("Size is wrong: " + b.toString(), 1, s.size());
 
@@ -161,7 +162,7 @@ public class ManagedBusTest {
                        o.toString().indexOf("bus.id=" + expect + ",") != -1);
             assertTrue("unexpected " + reject + " in object name: " + o,
                        o.toString().indexOf("bus.id=" + reject + ",") == -1);
-            b.append("\n");
+            b.append('\n');
         }
         assertEquals("Size is wrong: " + b.toString(), 2, s.size());
 

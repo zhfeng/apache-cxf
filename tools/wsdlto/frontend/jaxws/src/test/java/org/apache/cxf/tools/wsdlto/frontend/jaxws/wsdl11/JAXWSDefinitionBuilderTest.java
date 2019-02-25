@@ -66,7 +66,7 @@ public class JAXWSDefinitionBuilderTest {
             ExtensibilityElement extElement = (ExtensibilityElement)ite.next();
             JAXWSBinding binding = (JAXWSBinding)extElement;
             assertEquals("Customized package name does not been parsered", "com.foo", binding.getPackage());
-            assertEquals("Customized enableAsync does not parsered", true, binding.isEnableAsyncMapping());
+            assertTrue("Customized enableAsync does not parsered", binding.isEnableAsyncMapping());
         }
 
         PortType portType = customizedDef.getPortType(new QName("http://apache.org/hello_world_soap_http",
@@ -75,7 +75,7 @@ public class JAXWSDefinitionBuilderTest {
         List<?> portTypeList = portType.getExtensibilityElements();
         JAXWSBinding binding = (JAXWSBinding)portTypeList.get(0);
 
-        assertEquals("Customized enable EnableWrapperStyle name does not been parsered", true, binding
+        assertTrue("Customized enable EnableWrapperStyle name does not been parsered", binding
             .isEnableWrapperStyle());
 
         List<?> opList = portType.getOperations();
@@ -114,7 +114,7 @@ public class JAXWSDefinitionBuilderTest {
             ExtensibilityElement extElement = (ExtensibilityElement)ite.next();
             JAXWSBinding binding = (JAXWSBinding)extElement;
             assertEquals("Customized package name does not been parsered", "com.foo", binding.getPackage());
-            assertEquals("Customized enableAsync does not parsered", true, binding.isEnableAsyncMapping());
+            assertTrue("Customized enableAsync does not parsered", binding.isEnableAsyncMapping());
         }
 
         PortType portType = customizedDef.getPortType(new QName("http://apache.org/hello_world_soap_http",
@@ -123,7 +123,7 @@ public class JAXWSDefinitionBuilderTest {
         List<?> portTypeList = portType.getExtensibilityElements();
         JAXWSBinding binding = (JAXWSBinding)portTypeList.get(0);
 
-        assertEquals("Customized enable EnableWrapperStyle name does not been parsered", true, binding
+        assertTrue("Customized enable EnableWrapperStyle name does not been parsered", binding
             .isEnableWrapperStyle());
 
         List<?> opList = portType.getOperations();
@@ -161,8 +161,6 @@ public class JAXWSDefinitionBuilderTest {
 
         // this call will fail before CXF-556
         builder.customize();
-
-        assertTrue(true);
     }
 
     @Test

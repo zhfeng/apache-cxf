@@ -286,7 +286,7 @@ public class JaxWsClientTest extends AbstractJaxWsTest {
             client.invoke(bop, new Object[] {"BadRecordLitFault"}, null);
             fail("Should have returned a fault!");
         } catch (Fault fault) {
-            assertEquals(true, fault.getMessage().indexOf("Foo") >= 0);
+            assertTrue(fault.getMessage().indexOf("Foo") >= 0);
         }
         client.close();
 
@@ -302,7 +302,7 @@ public class JaxWsClientTest extends AbstractJaxWsTest {
 
         public void handleMessage(Message message) throws Fault {
             boolean result = message.getInterceptorChain().doIntercept(message);
-            assertEquals("doIntercept not return false", result, false);
+            assertFalse("doIntercept not return false", result);
             assertNotNull(message.getContent(Exception.class));
             throw new Fault(message.getContent(Exception.class));
         }

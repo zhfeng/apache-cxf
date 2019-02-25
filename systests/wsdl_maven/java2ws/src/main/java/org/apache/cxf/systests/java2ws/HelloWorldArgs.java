@@ -17,28 +17,19 @@
  * under the License.
  */
 
-package org.apache.cxf.tools.validator.internal.model;
+package org.apache.cxf.systests.java2ws;
 
-import org.apache.cxf.wsdl.WSDLConstants;
+import java.util.Date;
 
-public final class XDef extends XWsdl {
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
-    public XDef() {
-        super();
-        setQName(WSDLConstants.QNAME_DEFINITIONS);
-    }
+import org.apache.cxf.annotations.WSDLDocumentation;
 
-    public void setTargetNamespace(final String newTargetNamespace) {
-        setAttributeName("targetNamespace");
-        setAttributeValue(newTargetNamespace);
-    }
-
-    @Override
-    public String getText() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('{');
-        sb.append(getAttributeValue());
-        sb.append('}');
-        return sb.toString();
-    }
+@WebService
+@WSDLDocumentation(value = "A simple service with only one method")
+public interface HelloWorldArgs {
+    @WSDLDocumentation(value = "Simply return the given text")
+    String sayHi(@WebParam(name = "text") String text, @WebParam(name = "date") Date date,
+                 StringWrapper[][] wrapper);
 }

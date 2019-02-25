@@ -30,6 +30,7 @@ import java.util.Optional;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class FileUtilsTest {
@@ -62,7 +63,7 @@ public class FileUtilsTest {
         assertTrue(p.isPresent());
 
         List<String> lines = FileUtils.readLines(p.get().toFile());
-        assertTrue(!lines.isEmpty());
+        assertFalse(lines.isEmpty());
     }
 
     @Test
@@ -72,7 +73,7 @@ public class FileUtilsTest {
         assertTrue(directory.exists());
 
         List<File> foundFiles = FileUtils.getFilesUsingSuffix(directory, ".class");
-        assertTrue(foundFiles.size() > 0);
+        assertFalse(foundFiles.isEmpty());
 
         List<File> foundFiles2 = FileUtils.getFiles(directory, ".*\\.class$");
 

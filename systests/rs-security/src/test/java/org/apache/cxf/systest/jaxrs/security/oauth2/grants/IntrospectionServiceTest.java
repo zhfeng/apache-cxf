@@ -43,6 +43,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -132,7 +133,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         Response response = client.post(form);
 
         TokenIntrospection tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), true);
+        assertTrue(tokenIntrospection.isActive());
         assertEquals(tokenIntrospection.getUsername(), "alice");
         assertEquals(tokenIntrospection.getClientId(), "consumer-id");
         assertEquals(tokenIntrospection.getScope(), accessToken.getApprovedScope());
@@ -188,7 +189,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         Response response = client.post(form);
 
         TokenIntrospection tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), true);
+        assertTrue(tokenIntrospection.isActive());
         assertEquals(tokenIntrospection.getUsername(), "alice");
         assertEquals(tokenIntrospection.getClientId(), "consumer-id-aud");
         assertEquals(tokenIntrospection.getScope(), accessToken.getApprovedScope());
@@ -232,7 +233,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         Response response = client.post(form);
 
         TokenIntrospection tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), false);
+        assertFalse(tokenIntrospection.isActive());
     }
 
     @org.junit.Test
@@ -287,7 +288,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         response = client.post(form);
 
         TokenIntrospection tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), true);
+        assertTrue(tokenIntrospection.isActive());
 
         // Original token should not be ok
         form = new Form();
@@ -295,7 +296,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         response = client.post(form);
 
         tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), false);
+        assertFalse(tokenIntrospection.isActive());
     }
 
     @org.junit.Test
@@ -334,7 +335,7 @@ public class IntrospectionServiceTest extends AbstractBusClientServerTestBase {
         Response response = client.post(form);
 
         TokenIntrospection tokenIntrospection = response.readEntity(TokenIntrospection.class);
-        assertEquals(tokenIntrospection.isActive(), true);
+        assertTrue(tokenIntrospection.isActive());
         assertEquals(tokenIntrospection.getUsername(), "alice");
         assertEquals(tokenIntrospection.getClientId(), "consumer-id");
         assertEquals(tokenIntrospection.getScope(), accessToken.getApprovedScope());

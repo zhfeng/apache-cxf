@@ -452,7 +452,7 @@ public class WSDLToIDLAction {
                 }
             }
 
-            dotScopedName.append(".");
+            dotScopedName.append('.');
             scope = (IdlScopeBase)idlDef;
         }
 
@@ -768,7 +768,7 @@ public class WSDLToIDLAction {
                 }
             }
         } else {
-            if (bindings.size() >= 1) {
+            if (!bindings.isEmpty()) {
                 binding = bindings.iterator().next();
             }
         }

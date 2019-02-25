@@ -116,13 +116,13 @@ public final class HttpAuthHeader {
                 if ("nc".equals(key)) {
                     //nc is a 8 length HEX number so need get it as number
                     value = String.valueOf(tok.nval);
-                    if (value.indexOf(".") > 0) {
-                        value = value.substring(0, value.indexOf("."));
+                    if (value.indexOf('.') > 0) {
+                        value = value.substring(0, value.indexOf('.'));
                     }
                     StringBuilder pad = new StringBuilder();
                     pad.append("");
                     for (int i = 0; i < 8 - value.length(); i++) {
-                        pad.append("0");
+                        pad.append('0');
                     }
                     value = pad.toString() + value;
                 } else {

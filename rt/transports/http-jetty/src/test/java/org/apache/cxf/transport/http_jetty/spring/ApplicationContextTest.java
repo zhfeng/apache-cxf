@@ -154,16 +154,16 @@ public class ApplicationContextTest {
         assertEquals(111, engine.getThreadingParameters().getMinThreads());
         assertEquals(120, engine.getThreadingParameters().getMaxThreads());
         assertEquals("TestPrefix", engine.getThreadingParameters().getThreadNamePrefix());
-        assertEquals(engine.getTlsServerParameters().getClientAuthentication().isWant(), true);
-        assertEquals(engine.getTlsServerParameters().getClientAuthentication().isRequired(), true);
+        assertTrue(engine.getTlsServerParameters().getClientAuthentication().isWant());
+        assertTrue(engine.getTlsServerParameters().getClientAuthentication().isRequired());
 
         JettyHTTPDestination jd4 =
             (JettyHTTPDestination)factory.getDestination(
                 getEndpointInfo("sna", "foo2", "https://localhost:9003"), bus);
 
         engine = (JettyHTTPServerEngine)jd4.getEngine();
-        assertEquals(engine.getTlsServerParameters().getClientAuthentication().isWant(), false);
-        assertEquals(engine.getTlsServerParameters().getClientAuthentication().isRequired(), false);
+        assertFalse(engine.getTlsServerParameters().getClientAuthentication().isWant());
+        assertFalse(engine.getTlsServerParameters().getClientAuthentication().isRequired());
 
         JettyHTTPDestination jd5 =
             (JettyHTTPDestination)factory.getDestination(

@@ -164,6 +164,8 @@ public class JCacheOAuthDataProviderImpl extends JCacheCodeDataProvider {
         // external clients (in LDAP/etc) which can be used for client cred
         externalClients.add("bob:bobPassword");
 
+        this.setIssuer("jwt-issuer");
+
     }
 
     private Certificate loadCert() throws Exception {

@@ -117,7 +117,7 @@ public class HandlerChainInvokerTest {
 
         assertEquals(HANDLER_COUNT, invoker.getProtocolHandlers().size());
         for (Handler<?> h : invoker.getProtocolHandlers()) {
-            assertTrue(!(h instanceof LogicalHandler));
+            assertFalse(h instanceof LogicalHandler);
         }
 
     }
@@ -160,7 +160,7 @@ public class HandlerChainInvokerTest {
 
         boolean ret = invoker.invokeLogicalHandlers(false, lmc);
 
-        assertEquals(false, ret);
+        assertFalse(ret);
         assertFalse(invoker.isClosed());
         assertEquals(1, logicalHandlers[0].getHandleMessageCount());
         assertEquals(1, logicalHandlers[1].getHandleMessageCount());
@@ -193,7 +193,7 @@ public class HandlerChainInvokerTest {
         boolean ret = invoker.invokeLogicalHandlers(false, lmc);
         assertFalse(invoker.isClosed());
 
-        assertEquals(false, ret);
+        assertFalse(ret);
         assertEquals(0, logicalHandlers[0].getHandleMessageCount());
         assertEquals(1, logicalHandlers[1].getHandleMessageCount());
         assertTrue(invoker.isOutbound());
@@ -950,7 +950,7 @@ public class HandlerChainInvokerTest {
         invoker.invokeLogicalHandlers(true, lmc);
 
         assertEquals(7, invoker.getInvokedHandlers().size());
-//        assertTrue(!invoker.getInvokedHandlers().contains(logicalHandlers[1]));
+//        assertFalse(invoker.getInvokedHandlers().contains(logicalHandlers[1]));
         assertTrue(invoker.getInvokedHandlers().contains(protocolHandlers[0]));
         assertTrue(invoker.getInvokedHandlers().contains(protocolHandlers[1]));
         assertEquals(0, logicalHandlers[0].getHandleMessageCount());

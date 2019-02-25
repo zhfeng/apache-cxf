@@ -87,6 +87,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
@@ -771,7 +772,7 @@ public class JAXRSClientServerBookTest extends AbstractBusClientServerTestBase {
         assertEquals(200, wc.getResponse().getStatus());
         assertEquals(123L, book.getId());
         MultivaluedMap<String, Object> headers = wc.getResponse().getMetadata();
-        assertTrue(!headers.isEmpty());
+        assertFalse(headers.isEmpty());
         Object etag = headers.getFirst("ETag");
         assertNotNull(etag);
         assertTrue(etag.toString().startsWith("\""));
@@ -1329,7 +1330,7 @@ public class JAXRSClientServerBookTest extends AbstractBusClientServerTestBase {
         Response response = wc.options();
         List<Object> values = response.getMetadata().get("Allow");
         assertNotNull(values);
-        assertTrue(!values.contains("POST") && values.contains("GET")
+        assertFalse(values.contains("POST") && values.contains("GET")
                    && !values.contains("DELETE") && values.contains("PUT"));
         assertEquals(0, ((InputStream)response.getEntity()).available());
         List<Object> date = response.getMetadata().get("Date");
@@ -1916,7 +1917,7 @@ public class JAXRSClientServerBookTest extends AbstractBusClientServerTestBase {
         String response = wc.get(String.class);
         // {"Book":{"id":123,"name":"CXF in Action"}}
 
-        assertTrue(response.startsWith("{"));
+        assertTrue(response.charAt(0) == '{');
         assertTrue(response.endsWith("}"));
         assertTrue(response.contains("\"Book\":{"));
         assertTrue(response.indexOf("\"Book\":{") == 1);
@@ -1929,10 +1930,10 @@ public class JAXRSClientServerBookTest extends AbstractBusClientServerTestBase {
         //      "name":"CXF in Action"
         //    }
         //}
-        assertTrue(response.startsWith("{"));
+        assertTrue(response.charAt(0) == '{');
         assertTrue(response.endsWith("}"));
         assertTrue(response.contains("\"Book\":{"));
-        assertFalse(response.indexOf("\"Book\":{") == 1);
+        assertNotEquals(1, response.indexOf("\"Book\":{"));
 
     }
 
@@ -2663,21 +2664,8 @@ public class JAXRSClientServerBookTest extends AbstractBusClientServerTestBase {
                           + "bookstore/booksubresource/123/, "
                           + "bookstore]";
         getAndCompare("http://localhost:" + PORT + "/bookstore/"
-                      + "booksubresource/123/chapters/sub/1/matched%21uris?decode=true",
+                      + "booksubresource/123/chapters/sub/1/matched!uris?decode=true",
                       expected, "text/plain", "text/plain", 200);
-    }
-
-    @Test
-    public void testUriInfoMatchedUrisNoDecode() throws Exception {
-        //note '%21' instead of '!'
-        String expected = "[bookstore/booksubresource/123/chapters/sub/1/matched%21uris, "
-            + "bookstore/booksubresource/123/chapters/sub/1/, "
-            + "bookstore/booksubresource/123/, "
-            + "bookstore]";
-        getAndCompare("http://localhost:" + PORT + "/bookstore/"
-                      + "booksubresource/123/chapters/sub/1/matched%21uris?decode=false",
-                      expected,
-                      "text/plain", "text/plain", 200);
     }
 
     @Test

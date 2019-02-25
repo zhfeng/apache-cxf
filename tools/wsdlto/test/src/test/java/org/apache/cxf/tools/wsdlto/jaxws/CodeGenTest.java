@@ -86,7 +86,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
                     if ("OrderPizza".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("OrderPizza", parm.name());
-                        assertTrue(!parm.header());
+                        assertFalse(parm.header());
                     } else if ("CallerIDHeader".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("callerID", parm.partName());
@@ -107,7 +107,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
                     if ("OrderPizza".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("OrderPizza", parm.name());
-                        assertTrue(!parm.header());
+                        assertFalse(parm.header());
                     } else if ("CallerIDHeader".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("callerID", parm.partName());
@@ -146,7 +146,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
                     if ("OrderPizza".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("OrderPizza", parm.name());
-                        assertTrue(!parm.header());
+                        assertFalse(parm.header());
                     } else if ("CallerIDHeader".equals(parm.name())) {
                         fail("If the exsh turned off, should not generate this parameter");
                     } else {
@@ -180,7 +180,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
                     if ("OrderPizza".equals(parm.name())) {
                         assertEquals("http://mypizzaco.com/pizza/types", parm.targetNamespace());
                         assertEquals("OrderPizza", parm.name());
-                        assertTrue(!parm.header());
+                        assertFalse(parm.header());
                     } else if ("CallerIDHeader".equals(parm.name())) {
                         fail("If the exsh turned off, should not generate this parameter");
                     } else {
@@ -214,7 +214,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
                     WebParam parm = (WebParam)annotations[i][0];
                     if ("Toppings".equals(parm.name())) {
                         assertEquals("http://cxf.apache.org/pizza_wrapped/types", parm.targetNamespace());
-                        assertTrue(!parm.header());
+                        assertFalse(parm.header());
                     } else if ("CallerIDHeader".equals(parm.name())) {
                         assertEquals("http://cxf.apache.org/pizza_wrapped/types", parm.targetNamespace());
                         assertTrue(parm.header());
@@ -641,7 +641,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
 
         Class<?> clz = classLoader.loadClass("org.apache.cxf.w2j.hello_world_soap_http.types.SayHi");
         Method method = clz.getMethod("dummy", new Class[] {});
-        assertTrue("method declared on SayHi", method.getDeclaringClass().equals(clz));
+        assertEquals("method declared on SayHi", method.getDeclaringClass(), clz);
     }
 
     @Test
@@ -876,7 +876,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
 
         WebParam webParamAnno = AnnotationUtil.getWebParam(method, "SOAPHeaderInfo");
         assertEquals("INOUT", webParamAnno.mode().name());
-        assertEquals(true, webParamAnno.header());
+        assertTrue(webParamAnno.header());
         assertEquals("header_info", webParamAnno.partName());
 
     }
@@ -906,7 +906,7 @@ public class CodeGenTest extends AbstractCodeGenTest {
 
 
         WebParam webParamAnno = AnnotationUtil.getWebParam(method, "greetMe");
-        assertEquals(true, webParamAnno.header());
+        assertTrue(webParamAnno.header());
 
         webParamAnno = AnnotationUtil.getWebParam(method, "sayHi");
         assertEquals("INOUT", webParamAnno.mode().name());

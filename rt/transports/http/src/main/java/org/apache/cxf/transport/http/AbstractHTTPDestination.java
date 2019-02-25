@@ -236,7 +236,7 @@ public abstract class AbstractHTTPDestination
      */
     protected final boolean isOneWay(Message message) {
         Exchange ex = message.getExchange();
-        return ex == null ? false : ex.isOneWay();
+        return ex != null && ex.isOneWay();
     }
 
     public void invoke(final ServletConfig config,
@@ -893,7 +893,7 @@ public abstract class AbstractHTTPDestination
         if (isMultiplexWithAddress()) {
             String address = (String)context.get(Message.PATH_INFO);
             if (null != address) {
-                int afterLastSlashIndex = address.lastIndexOf("/") + 1;
+                int afterLastSlashIndex = address.lastIndexOf('/') + 1;
                 if (afterLastSlashIndex > 0
                         && afterLastSlashIndex < address.length()) {
                     id = address.substring(afterLastSlashIndex);

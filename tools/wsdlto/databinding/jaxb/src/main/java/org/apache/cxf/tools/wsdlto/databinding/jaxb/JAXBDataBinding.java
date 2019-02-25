@@ -798,7 +798,7 @@ public class JAXBDataBinding implements DataBindingProfile {
         ClassCollector classCollector = context.get(ClassCollector.class);
         Collection<String> files = classCollector.getGeneratedFileInfo();
         for (String file : files) {
-            int dotIndex = file.lastIndexOf(".");
+            int dotIndex = file.lastIndexOf('.');
             String sub = dotIndex <= 0 ? "" : file.substring(0, dotIndex - 1);
             if (sub.equals(packageName)) {
                 return true;
@@ -897,7 +897,7 @@ public class JAXBDataBinding implements DataBindingProfile {
                                                                      ToolConstants.SCHEMA_URI,
                                                                      "include");
         boolean hasJAXB = DOMUtils.hasElementInNS(element, ToolConstants.NS_JAXB_BINDINGS);
-        if (impElemList.isEmpty() && incElemList.size() == 0 && !hasJAXB) {
+        if (impElemList.isEmpty() && incElemList.isEmpty() && !hasJAXB) {
             return element;
         }
         element = (Element)cloneNode(element.getOwnerDocument(), element, true);

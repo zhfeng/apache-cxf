@@ -17,28 +17,16 @@
  * under the License.
  */
 
-package org.apache.cxf.tools.validator.internal.model;
+package org.apache.cxf.systests.java2ws;
 
-import org.apache.cxf.wsdl.WSDLConstants;
+public class StringWrapper {
+    private String value;
 
-public final class XDef extends XWsdl {
-
-    public XDef() {
-        super();
-        setQName(WSDLConstants.QNAME_DEFINITIONS);
+    public String getValue() {
+        return value;
     }
 
-    public void setTargetNamespace(final String newTargetNamespace) {
-        setAttributeName("targetNamespace");
-        setAttributeValue(newTargetNamespace);
-    }
-
-    @Override
-    public String getText() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('{');
-        sb.append(getAttributeValue());
-        sb.append('}');
-        return sb.toString();
+    public void setValue(String value) {
+        this.value = value;
     }
 }
