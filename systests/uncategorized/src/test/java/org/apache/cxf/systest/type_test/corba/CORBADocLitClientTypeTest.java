@@ -138,8 +138,10 @@ public class CORBADocLitClientTypeTest extends AbstractTypeTestClient5 {
             "SimpleContent3",
             "SimpleContentExtWithAnyAttribute",
             "SimpleListRestriction2",
+            "SimpleRestriction",
             "SimpleRestriction2",
             "SimpleRestriction3",
+            "SimpleRestriction4",
             "SimpleRestriction5",
             "SimpleRestriction6",
             "SimpleStruct",
@@ -204,6 +206,17 @@ public class CORBADocLitClientTypeTest extends AbstractTypeTestClient5 {
         };
         if (System.getProperty("java.vendor").contains("IBM")) {
             NOT_WORKING_TESTS.addAll(Arrays.asList(notWorkingIBM));
+        }
+
+        String[] notWorkingJacOrb = new String[] {
+            "StringEnum",
+            "DecimalEnum",
+            "NumberEnum",
+            "AnyURIEnum"
+        };
+        String orb = System.getProperty("org.omg.CORBA.ORBClass");
+        if (orb != null && orb.contains("jacorb")) {
+            NOT_WORKING_TESTS.addAll(Arrays.asList(notWorkingJacOrb));
         }
     }
 
